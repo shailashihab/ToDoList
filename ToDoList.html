@@ -147,7 +147,7 @@ console.log(Objlist.length);
 Objlist.push(addedTasks);
 console.log(Objlist.length);
 addedTasks={};
-
+output = "";
 for (let i = 0; i < Objlist.length; i++) {
             if (Objlist[i].completed===true) {
                 output += "<label class='list-group-item'>"+"<input class='form-check-input me-1' type='checkbox' checked disabled id="+i+">"+Objlist[i].title+"</label>"
