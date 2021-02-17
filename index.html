@@ -25,18 +25,23 @@ form{
     background-color: rgba(0, 0, 0, 0.75);
     z-index: 2;
     color: white;
-    font-weight: bold;
+    /* font-weight: bold; */
     border: 2px solid black;
     padding: 2%;
-    width: 400px;
-    top: 30%;
-    left: 35%;
+    width: 25%;
+    top: 28%;
+    left: 38%;
     position: absolute;       
 }
 .formHead{
     color: coral;
     text-align: center;
 }
+ /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+ @media screen and (max-height: 450px) {
+    form {width: 100%; }
+    
+  }
 
 
 </style>    
@@ -44,7 +49,7 @@ form{
 <body>
         <div class="bg-text">    
                     <form action="./ToDoList.html" name="myForm" id="myForm">
-                        <div class="mb-3 formHead"><h1>TO DO SIGNIN</h1></div>
+                        <div class="mb-3 formHead"><h3>TO DO SIGNIN</h3></div>
 
                         <div class="mb-3" style="width: 96%;">
                         <label for="exampleInputEmail1" class="form-label">UserName</label>
