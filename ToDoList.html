@@ -166,7 +166,8 @@ for (let i = 0; i < Objlist.length; i++) {
 
 function del(){
     var idArr=[];
-    alert("Clearing completed tasks....");
+    confirm("Clearing completed tasks....");
+    // alert("Clearing completed tasks....");
     output="";   
     console.log(Objlist.length); 
     var inputClass=document.getElementsByClassName("form-check-input");
