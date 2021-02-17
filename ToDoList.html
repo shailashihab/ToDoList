@@ -40,7 +40,7 @@
   margin-left: 0;
   margin-right: 0;
   padding: 5px;
-  font-size: 40px;
+  font-size: 25px;
   display: flex;
   text-decoration: none;
   color: coral;
@@ -72,7 +72,7 @@
 <!-- NavBar ends here --> 
 <div id="content">
     <div class="btn-group" style="float: right;">
-        <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <button class="btn btn-secondary  dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           Options
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -80,7 +80,7 @@
             <li onclick="add();"><a class="dropdown-item" href="#">Add tasks</a></li>
           </ul>
       </div>
-    <h1>My To-Do List</h1>
+    <h4>My To-Do List</h4>
     <div id="demo"></div>
     <div id="addTask"></div>
 </div> 
@@ -102,7 +102,7 @@ xhttp.onreadystatechange = function(){
                 }  
             document.getElementById("demo").innerHTML="<div class='list-group'>"+output+"</div>";
             document.getElementById("demo").style.padding="20px"; 
-            document.getElementById("demo").style.fontSize="25px"; 
+            // document.getElementById("demo").style.fontSize="25px"; 
             document.getElementById("demo").style.fontFamily="TimesNewRoman";                    
         }
         
@@ -158,7 +158,7 @@ for (let i = 0; i < Objlist.length; i++) {
          
             document.getElementById("demo").innerHTML="<div class='list-group'>"+output+"</div>";
             document.getElementById("demo").style.padding="20px"; 
-            document.getElementById("demo").style.fontSize="25px"; 
+            // document.getElementById("demo").style.fontSize="25px"; 
             document.getElementById("demo").style.fontFamily="TimesNewRoman";                     
         }            
 }   
@@ -187,7 +187,7 @@ function del(){
                 }  
             document.getElementById("demo").innerHTML="<div class='list-group'>"+output+"</div>";
             document.getElementById("demo").style.padding="20px"; 
-            document.getElementById("demo").style.fontSize="25px"; 
+            // document.getElementById("demo").style.fontSize="25px"; 
             document.getElementById("demo").style.fontFamily="TimesNewRoman"; 
         }
 </script>
