@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To_Do_List</title>
-    
+    <title>Document</title>
+
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 
@@ -13,62 +13,154 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 <style>
-body{
-    background-image: url(http://citrusbits.com/wp-content/uploads/2014/09/Best-To-do-task-list-apps-San-Francisco.jpg);
- 
-    background-size: cover;    
+    body {
+  
+    color: #6a6f8c;
+    background: #c8c8c8;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: medium;
+}
+
+.login-box {
+    min-height: 580px;
+    background: url(http://citrusbits.com/wp-content/uploads/2014/09/Best-To-do-task-list-apps-San-Francisco.jpg) no-repeat center;
+   
+   
+    font-weight: bold;
+    color: white;  
+}
+.login-snip .sign-in:checked+.tab,
+.login-snip .sign-up:checked+.tab {
+    color: #fff;
+    border-color: #1161ee
+}
+
+.login-snip {
+    padding: 40px;
+    min-height: 580px;
+    
+    background-color:rgba(32, 73, 54, 0.5) ;
+   
+}
+.hr{
+    border-bottom: 2px solid rgb(158, 134, 134) ;
+    margin: 10px;
+    padding: 10px;
 }
 form{
-    background-color: rgb(0,0,0);
-    background-color: rgba(0, 0, 0, 0.75);
-    z-index: 2;
-    color: white;
-    /* font-weight: bold; */
+    margin: 10px;
+    padding: 10px;
+}
+
+    
+
+.btn{
+    margin-top: 25px;
+    margin-left: 25%;
+    width: 50%;
+}
+#tab-1{
+    display: none;
     border: 2px solid black;
-    padding: 2%;
-    width: 30%;
-    border-radius: 2%;
-    top: 28%;
-    left: 35%;
-    position: fixed; 
 }
-.formHead{
-    color: coral;
-    text-align: center;
+#tab-2{
+    display: none;
+    border: 2px solid black;   
 }
 
 
 
-</style>    
+</style>
+
 </head>
 <body>
-        <div class="bg-text">    
-                    <form  action="./ToDoList.html" name="myForm" id="myForm">
-                        <div class="mb-3 formHead"><h3>TO DO SIGNIN</h3></div>
-
-                        <div class="mb-3" style="width: 96%;">
-                        <label for="exampleInputEmail1" class=" form-label">UserName</label>
-                        <input type="text" class="form-control" name="UserName" placeholder="Enter Username" id="inputUserName" aria-describedby="emailHelp">
-                        </div>
-
-                        <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                            <div class="d-flex">
-                                <div style="width: 96%;" ><input type="password" class="form-control"name="password" placeholder="Enter Password" id="exampleInputPassword1"></div>
-                                <div style="width: 4%; color: white; border-radius: 15%; text-align: center;" onclick="showpass();"><p><i class="fa fa-eye-slash"></i></p></div>
+    <div class="row">
+        <div class="col-lg-3 mx-auto p-0">
+            <div class="card">
+                <div class="login-box">
+                    <div class="login-snip">
+                        <div class="login-space">
+                            <div class="row g-3 ">
+                                <div class="col-6" style="text-align: center;  ">
+                                <input id="tab-1" data-section="#login" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Login</label> 
+                                </div>
+                                <div class="col-6" style="text-align: center; ">
+                                <input id="tab-2" data-section="#sign-up-form" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+                                </div>
+                            </div>
+                            <div id="login" class="showhide">
+                                <form action="./ToDoList.html" name="myForm" id="myForm" >
+                                    <div class="mb-3">
+                                      <label for="exampleInputEmail1" class="form-label" name="UserName">UserName</label>
+                                      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                    </div>
+                                    <div class="mb-3">
+                                      <label for="exampleInputPassword1" class="form-label" name="password" >Password</label>
+                                      <input type="password" class="form-control" id="exampleInputPassword1">
+                                    </div>
+                                    <div class="mb-3 form-check">
+                                      <input type="checkbox" class="form-check-input" id="exampleCheck1" style="width: 20px; height: 20px;">
+                                      <label class="form-check-label" for="exampleCheck1">Keep me logged in</label>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                  </form>
+                                <div class="hr"></div>
+                                <div class="foot" style="text-align: center; color: white;"> <a href="#">Forgot Password?</a> </div>
+                            </div>
+                            <div id="sign-up-form" class="showhide">
+                                <form class="row g-3">
+                                    <div class="col-12">
+                                        <label for="inputAddress2" class="form-label">UserName</label>
+                                        <input type="text" class="form-control" id="inputAddress2" placeholder="Enter UserName">
+                                      </div>
+                                    <div class="col-12">
+                                      <label for="inputEmail4" class="form-label">Email</label>
+                                      <input type="email" class="form-control" id="inputEmail4" placeholder="Provide mailid">
+                                    </div>
+                                    <div class="col-12">
+                                      <label for="inputPassword4" class="form-label">Password</label>
+                                      <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+                                    </div>
+                                    <div class="col-12">
+                                      <label for="inputAddress" class="form-label">Repeat Password</label>
+                                      <input type="password" class="form-control" id="inputAddress" placeholder="Repeat password">
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" id="signup" class="btn btn-primary">Sign Up</button>  
+                                    </div>  
+                                    
+                                </form>
+                                <div class="hr"></div>
+                                <div class="foot" style="text-align: center;"> <label for="tab-1">Already Member?</label> </div>
                             </div>
                         </div>
-
-                        <button type="submit" class="btn btn-primary ">SignIn</button>
-                    </form>
+                    </div>
+                </div>
+            </div>
         </div>
-<script>
- // form validation    
+    </div>
+    <script>
+        
+        $(document).ready(function(){
+        $(function(){
+            // listen for changes
+            $('input[type="radio"]').on('change',function(){
+                // get checked one
+                var target=$('input[type="radio"]:checked');
+                // hide all divs with .showhiide class
+                $(".showhide").hide();
+                // show div corresponds to selected radio
+                $( target.attr('data-section')).show();
+                // trigger the change on page load
+
+            }).trigger('change');
+        });
+        })
+        
    document.getElementById("myForm").addEventListener("submit",function(evt){ 
-        var UserName = document.myForm.UserName.value;
-        var password = document.myForm.password.value;
+        var UserName = document.getElementById("exampleInputEmail1").value;
+        var password = document.getElementById("exampleInputPassword1").value;
         if (UserName == "" || password == "") {
             // .preventDefault(); in addEventListener to stop default form redirection action
             evt.preventDefault();
@@ -76,13 +168,13 @@ form{
         }
         else if (UserName != "admin" || password != 12345 ){
             evt.preventDefault();
-            alert("Invalid Username/Password !!!!");
+            alert("Username/Password is incorrect!!!!");
         }
         else if (UserName == "admin" && password == "12345") {
         }
 
     });
-// form validation ends here
+
 // show password
 function showpass(){ 
        var y = document.getElementsByTagName("i");
@@ -98,6 +190,7 @@ function showpass(){
          y[0].setAttribute("class","fa fa-eye-slash")
        }      
 }
-</script>        
+    
+    </script>
 </body>
 </html>
