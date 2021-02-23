@@ -48,7 +48,30 @@
   border-radius: 10%;
   
 }
-
+.form-inline{
+    margin: 20px;
+    padding: 5px;
+}
+h6{
+    text-align: center;
+    text-decoration: none;
+}
+#totalTasks{
+    text-align: center;
+    margin: 20px;
+    padding: 5px;
+    display: block;
+}
+#completed{
+    text-align: center;
+    margin: 20px;
+    padding: 5px;
+}
+#pending{
+    text-align: center;
+    margin: 20px;
+    padding: 5px;
+}
 
 </style>
 
@@ -58,6 +81,7 @@
 <body>
         <!-- NavBar starts here -->
     
+    <div class="homeNavBar">
         <nav class="navbar navbar-expand-lg ">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto ">    
               <li class="nav-item">
@@ -68,41 +92,71 @@
               </li>                
             </ul>   
     </nav>
+    </div>
+<div class="statusNavBar">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+   
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+          <form class="form-inline my-2 my-lg-0 d-flex">
+            <input class="form-control mr-sm-2" type="search" id="searchbar" onkeyup="search_list();" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+
+         <div class="d-flex">
+            <div id="totalTasks"></div>
+            <div id="completed"></div>
+            <div id="pending"></div>
+         </div>
+         
+         <div class="btn-group d-flex">
+            <button class="btn  dropdown-toggle btn-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Options
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li onclick="del();"><a class="dropdown-item" href="#">Clear completed tasks</a></li>
+                <li onclick="add();"><a class="dropdown-item" href="#">Add tasks</a></li>
+            </ul>
+        </div>
+        </div>
+      </nav>
+</div>
 <!-- NavBar ends here --> 
 <div id="content">
-    <div class="btn-group" style="float: right;">
-        <button class="btn btn-secondary  dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Options
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <li onclick="del();"><a class="dropdown-item" href="#">Clear completed tasks</a></li>
-            <li onclick="add();"><a class="dropdown-item" href="#">Add tasks</a></li>
-          </ul>
-      </div>
     <h4>My To-Do List</h4>
     <div id="demo"></div>
-    <div id="addTask"></div>
 </div> 
 <script>
 
 var output = "";
 var Objlist=[];
+var completed=0;
+var total=0;
+var pending=0;
 var x=document.getElementById("demo");
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function(){
     if (this.readyState==4&&this.status) {
         Objlist = JSON.parse(this.responseText);
+        total=Objlist.length;
         for (let i = 0; i < Objlist.length; i++) {
             if (Objlist[i].completed===true) {
                 output += "<label class='list-group-item'>"+"<input class='form-check-input me-1' type='checkbox' checked disabled id="+i+">"+Objlist[i].title+"</label>"
-               }
+                completed++;
+            }
             else{
                 output += "<label class='list-group-item'>"+"<input class='form-check-input me-1 myCheck' type='checkbox' onchange = flagCheck();  id="+i+">"+Objlist[i].title+"</label>"
-                }  
+                pending++;    
+            }  
             document.getElementById("demo").innerHTML="<div class='list-group'>"+output+"</div>";
+            document.getElementById("totalTasks").innerHTML="Total tasks"+"<br>"+total;
+            document.getElementById("completed").innerHTML="Completed"+"<br>"+completed;
+            document.getElementById("pending").innerHTML="Pending"+"<br>"+pending;
             document.getElementById("demo").style.padding="20px"; 
-            // document.getElementById("demo").style.fontSize="25px"; 
             document.getElementById("demo").style.fontFamily="TimesNewRoman";                    
         }
         
@@ -112,6 +166,15 @@ xhttp.open("GET","https://jsonplaceholder.typicode.com/todos",true);
 xhttp.send();
 
 function flagCheck(){
+    total=Objlist.length;
+    completed=completed+1;
+    pending=pending-1;
+    document.getElementById("totalTasks").innerHTML="Total tasks"+"<br>"+total;
+    document.getElementById("completed").innerHTML="Completed"+"<br>"+completed;
+    document.getElementById("pending").innerHTML="Pending"+"<br>"+pending;
+    console.log("Total"+total);
+                console.log("Pending"+pending);
+                console.log("Completed"+completed);
     var promise=flagChecked();
     promise.then(function(){console.log("success")})
 }    
@@ -138,6 +201,8 @@ function flagChecked(){
 
 var addedTasks={};
 function add(){
+total=total+1;
+pending=pending+1;
 addedTasks.id=prompt("Enter ID");
 addedTasks.UserId=prompt("Enter UserId");
 addedTasks.title=prompt("Enter title");
@@ -154,18 +219,26 @@ for (let i = 0; i < Objlist.length; i++) {
                }
             else{
                 output += "<label class='list-group-item'>"+"<input class='form-check-input me-1 myCheck' type='checkbox' onchange = flagCheck();  id="+i+">"+Objlist[i].title+"</label>"
-                }  
-         
+                }                      
+        }  
             document.getElementById("demo").innerHTML="<div class='list-group'>"+output+"</div>";
             document.getElementById("demo").style.padding="20px"; 
-            // document.getElementById("demo").style.fontSize="25px"; 
-            document.getElementById("demo").style.fontFamily="TimesNewRoman";                     
-        }            
+            document.getElementById("demo").style.fontFamily="TimesNewRoman";
+            document.getElementById("totalTasks").innerHTML="Total tasks"+"<br>"+total;
+            document.getElementById("completed").innerHTML="Completed"+"<br>"+completed;
+            document.getElementById("pending").innerHTML="Pending"+"<br>"+pending;          
 }   
     
-
 function del(){
-    var idArr=[];
+  var r = confirm("Do you want to clear completed tasks?");
+  if (r == true) {
+    delconfirm();
+    return true;
+  } else {
+    return false;
+  }
+}
+function delconfirm(){
     alert("Clearing completed tasks....");
     output="";   
     console.log(Objlist.length); 
@@ -177,6 +250,7 @@ function del(){
             }  
         }
         console.log(splicArr);
+        complted=splicArr.length;
         for (let i = 0; i < splicArr.length; i++) {
             delete Objlist[splicArr[i]];
              } 
@@ -187,9 +261,31 @@ function del(){
                 }  
             document.getElementById("demo").innerHTML="<div class='list-group'>"+output+"</div>";
             document.getElementById("demo").style.padding="20px"; 
-            // document.getElementById("demo").style.fontSize="25px"; 
-            document.getElementById("demo").style.fontFamily="TimesNewRoman"; 
+            document.getElementById("demo").style.fontFamily="TimesNewRoman";
+            total=Objlist.length;
+            pending=Objlist.length;
+            completed=0;
+            document.getElementById("totalTasks").innerHTML="Total tasks"+"<br>"+total;
+            document.getElementById("completed").innerHTML="Completed"+"<br>"+completed;
+            document.getElementById("pending").innerHTML="Pending"+"<br>"+pending;
         }
+
+
+
+    // let input = document.getElementById('searchbar').value 
+    // input=input.toLowerCase(); 
+    // let x = document.getElementsByClassName('animals'); 
+      
+    // for (i = 0; i < x.length; i++) {  
+    //     if (!x[i].innerHTML.toLowerCase().includes(input)) { 
+    //         x[i].style.display="none"; 
+    //     } 
+    //     else { 
+    //         x[i].style.display="list-item";                  
+    //     } 
+    // }
+}
+
 </script>
 </body>
 </html>
